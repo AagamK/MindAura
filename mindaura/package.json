@@ -1,0 +1,23 @@
+{
+  "name": "mindaura",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "firebase": "^9.0.0",
+    "lucide-react": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-next": "^11.0.0",
+    "typescript": "^4.0.0"
+  }
+}

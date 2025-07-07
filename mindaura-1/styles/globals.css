@@ -1,0 +1,200 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4ff;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #4a4a4a;
+}
+
+a {
+    text-decoration: none;
+    color: #4a90e2;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.bg-gradient-to-br {
+    background: linear-gradient(to bottom right, #4a90e2, #9013fe);
+}
+
+.text-gray-400 {
+    color: #b0b0b0;
+}
+
+.text-gray-600 {
+    color: #666;
+}
+
+.text-gray-900 {
+    color: #1a1a1a;
+}
+
+.border-t {
+    border-top: 1px solid #eaeaea;
+}
+
+.pt-8 {
+    padding-top: 2rem;
+}
+
+.pb-16 {
+    padding-bottom: 4rem;
+}
+
+.py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.hover\:text-indigo-600:hover {
+    color: #4a90e2;
+}
+
+.transition-colors {
+    transition: color 0.3s ease;
+}
+
+.shadow-lg {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-2xl {
+    border-radius: 1rem;
+}
+
+.max-w-3xl {
+    max-width: 768px;
+}
+
+.max-w-6xl {
+    max-width: 1536px;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-gray-900 {
+    background-color: #1a1a1a;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-indigo-100 {
+    color: #d6e4ff;
+}
+
+.text-indigo-600 {
+    color: #4a90e2;
+}
+
+.text-purple-600 {
+    color: #9013fe;
+}
+
+.text-red-500 {
+    color: #e74c3c;
+}
+
+.text-yellow-400 {
+    color: #f1c40f;
+}
+
+.text-green-600 {
+    color: #2ecc71;
+}
+
+.bg-transparent {
+    background-color: transparent;
+}
+
+.border-indigo-200 {
+    border-color: #b0c4de;
+}
+
+.border-gray-800 {
+    border-color: #4a4a4a;
+}
+
+.hover\:bg-indigo-50:hover {
+    background-color: #f0f4ff;
+}
+
+.hover\:bg-gray-100:hover {
+    background-color: #f7f7f7;
+}
+
+.animate-pulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

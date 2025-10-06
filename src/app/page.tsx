@@ -4,6 +4,7 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 import { ArrowRight, Bot, MessageCircle, Sparkles, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/layout/footer';
 
 const features = [
   {
@@ -104,28 +105,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-       <section id="visual" className="w-full py-20 md:py-32">
-         <div className="container mx-auto text-center">
-             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-               A glimpse into your journey
-             </h2>
-             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-                Our interface is designed to be calming, intuitive, and beautiful.
-             </p>
-             <div className="relative mt-12 h-96 w-full max-w-5xl mx-auto">
-               {heroImage && (
-                 <Image
-                   src={heroImage.imageUrl}
-                   alt={heroImage.description}
-                   data-ai-hint={heroImage.imageHint}
-                   fill
-                   className="rounded-xl object-cover shadow-2xl shadow-primary/10 border border-border/20"
-                 />
-               )}
-            </div>
-         </div>
-       </section>
 
       <section id="testimonials" className="w-full py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-6">

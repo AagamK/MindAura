@@ -67,7 +67,7 @@ export default function MoodPage() {
 
   return (
     <div className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center bg-background p-4 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        {/* <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
         <div className="absolute pointer-events-none inset-0 bg-grid-small-white/[0.2]"></div>
 
       <Card className="w-full max-w-2xl animate-fade-in-up bg-card/80 backdrop-blur-sm border-border/50">

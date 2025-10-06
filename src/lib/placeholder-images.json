@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "landing-hero",
+      "description": "A serene, abstract image representing mental clarity and calmness.",
+      "imageUrl": "https://images.unsplash.com/photo-1651795426376-0e6adfd01f00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzZXJlbmUlMjBhYnN0cmFjdHxlbnwwfHx8fDE3NTk3Mjk4NjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "serene abstract"
+    }
+  ]
 }

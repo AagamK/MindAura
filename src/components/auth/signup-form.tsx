@@ -19,12 +19,13 @@ import { auth } from '@/lib/firebase';
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
   updateProfile,
+  getRedirectResult,
 } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { Terminal } from 'lucide-react';
 
@@ -41,6 +42,27 @@ export function SignupForm() {
   const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const checkRedirectResult = async () => {
+      setIsLoading(true);
+      try {
+        const result = await getRedirectResult(auth);
+        if (result) {
+          toast({
+            title: 'Success!',
+            description: "You've been signed up with Google.",
+          });
+          router.push('/mood');
+        }
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    checkRedirectResult();
+  }, [router, toast]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,19 +101,8 @@ export function SignupForm() {
   async function handleGoogleSignIn() {
     setError(null);
     setIsLoading(true);
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      toast({
-        title: 'Success!',
-        description: "You've been signed up with Google.",
-      });
-      router.push('/mood');
-    } catch (error: any) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const provider = new GoogleAuthProvider();
+    await signInWithRedirect(auth, provider);
   }
 
   return (

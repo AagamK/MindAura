@@ -11,6 +11,7 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 import { ArrowRight, Bot, MessageCircle, Sparkles, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/layout/footer';
 
 const features = [
   {

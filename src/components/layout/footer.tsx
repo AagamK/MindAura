@@ -1,6 +1,17 @@
+'use client';
+
 import React from 'react';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Do not render the footer on the chat page
+  if (pathname === '/chat') {
+    return null;
+  }
+
   return (
     <footer className="w-full border-t bg-card">
       <div className="container mx-auto px-4 py-8 text-center md:px-6">

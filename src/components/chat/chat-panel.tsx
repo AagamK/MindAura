@@ -117,8 +117,8 @@ export default function ChatPanel() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-8rem)] flex-col">
-        <div className="border-b bg-card">
+      <div className="flex h-screen flex-col">
+        <div className="border-b bg-card/80 backdrop-blur-sm">
           <div className="container mx-auto flex max-w-3xl items-center justify-between p-4">
             <h2 className="text-lg font-semibold text-card-foreground">
               Your Conversation
@@ -144,7 +144,7 @@ export default function ChatPanel() {
             ))}
           </div>
         </div>
-        <div className="border-t bg-background p-4 md:p-6">
+        <div className="border-t bg-card/80 p-4 backdrop-blur-sm md:p-6">
           <div className="container mx-auto max-w-3xl">
             <Form {...form}>
               <form
@@ -159,7 +159,7 @@ export default function ChatPanel() {
                       <FormControl>
                         <Textarea
                           placeholder="Type your message here..."
-                          className="resize-none"
+                          className="resize-none rounded-2xl border-2 border-input bg-background/80 focus:border-primary"
                           {...field}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -172,7 +172,7 @@ export default function ChatPanel() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="icon" disabled={isPending}>
+                <Button type="submit" size="icon" disabled={isPending} className="rounded-full h-10 w-10">
                   <Send className="h-5 w-5" />
                   <span className="sr-only">Send</span>
                 </Button>

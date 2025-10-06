@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { placeholderImages as PlaceHolderImages } from '@/lib/placeholder-images.json';
+import { placeholderImages } from '@/lib/placeholder-images.json';
 import { ArrowRight, Bot, MessageCircle, Sparkles, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -55,7 +55,9 @@ const testimonials = [
 ];
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === 'landing-hero');
+  const heroImage = placeholderImages.find(
+    (img) => img.id === 'landing-hero'
+  );
 
   return (
     <div className="flex flex-col items-center">
@@ -161,6 +163,7 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

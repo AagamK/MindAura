@@ -30,21 +30,25 @@ export default function ChatMessage({ message, user }: ChatMessageProps) {
         isUser ? 'flex-row-reverse' : 'flex-row'
       )}
     >
-      <Avatar>
+      <Avatar className="shadow-sm">
         <AvatarImage
           src={isUser ? user?.photoURL ?? '' : undefined}
           alt={isUser ? user?.displayName ?? 'User' : 'MindAura'}
         />
         <AvatarFallback>
-          {isUser ? <User /> : <Bot />}
+          {isUser ? (
+            <User className="text-primary" />
+          ) : (
+            <Bot className="text-accent-foreground" />
+          )}
         </AvatarFallback>
       </Avatar>
       <div
         className={cn(
           'max-w-md rounded-xl px-4 py-3 shadow-md md:max-w-2xl',
           isUser
-            ? 'bg-primary text-primary-foreground'
-            : 'bg-card text-card-foreground'
+            ? 'rounded-br-none bg-primary text-primary-foreground'
+            : 'rounded-bl-none bg-card text-card-foreground'
         )}
       >
         {isLoading ? <LoadingIndicator /> : <p className="whitespace-pre-wrap">{message.content}</p>}

@@ -12,7 +12,7 @@ import ChatMessage from './chat-message';
 import { Button } from '../ui/button';
 import { Form, FormControl, FormField, FormItem } from '../ui/form';
 import { Textarea } from '../ui/textarea';
-import { useToast } from '../ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import {
   AlertDialog,
   AlertDialogAction,

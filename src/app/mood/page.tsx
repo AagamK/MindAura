@@ -47,18 +47,18 @@ export default function MoodPage() {
   if (loading || !user) {
     return (
       <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 py-12">
-        <Card className="w-full max-w-2xl">
+        <Card className="w-full max-w-2xl bg-card/50">
           <CardHeader>
-            <Skeleton className="h-8 w-3/4" />
-            <Skeleton className="mt-2 h-4 w-1/2" />
+            <Skeleton className="h-8 w-3/4 bg-muted" />
+            <Skeleton className="mt-2 h-4 w-1/2 bg-muted" />
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-4 md:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="h-32 w-full" />
+              <Skeleton key={i} className="h-32 w-full bg-muted" />
             ))}
           </CardContent>
           <CardFooter>
-            <Skeleton className="h-11 w-full" />
+            <Skeleton className="h-11 w-full bg-muted" />
           </CardFooter>
         </Card>
       </div>
@@ -66,13 +66,16 @@ export default function MoodPage() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-8rem)] items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-2xl animate-fade-in-up">
+    <div className="relative flex min-h-[calc(100vh-8rem)] items-center justify-center bg-background p-4 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        <div className="absolute pointer-events-none inset-0 bg-grid-small-white/[0.2]"></div>
+
+      <Card className="w-full max-w-2xl animate-fade-in-up bg-card/80 backdrop-blur-sm border-border/50">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold tracking-tight">
             How are you feeling today?
           </CardTitle>
-          <CardDescription className="pt-2">
+          <CardDescription className="pt-2 text-muted-foreground">
             Your selection helps us to understand you better.
           </CardDescription>
         </CardHeader>
@@ -83,10 +86,10 @@ export default function MoodPage() {
                 key={mood.label}
                 onClick={() => setSelectedMood(mood.label)}
                 className={cn(
-                  'flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 p-6 text-center transition-all duration-200',
+                  'group flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 p-6 text-center transition-all duration-200',
                   selectedMood === mood.label
-                    ? 'border-primary bg-primary/10 shadow-lg scale-105'
-                    : 'border-border bg-card hover:border-primary/50 hover:bg-primary/5'
+                    ? 'border-primary bg-primary/20 shadow-lg scale-105'
+                    : 'border-border/50 bg-card/50 hover:border-primary/50 hover:bg-primary/10'
                 )}
               >
                 <span className="text-5xl transition-transform duration-200 group-hover:scale-110">
@@ -102,7 +105,7 @@ export default function MoodPage() {
         <CardFooter>
           <Button
             size="lg"
-            className="w-full"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
             onClick={handleContinue}
             disabled={!selectedMood}
           >

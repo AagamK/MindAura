@@ -27,22 +27,16 @@ export default function ChatMessage({ message, user }: ChatMessageProps) {
     <div
       className={cn(
         'flex items-start gap-4',
-        isUser ? 'flex-row-reverse' : 'flex-row'
+        isUser ? 'justify-end' : 'justify-start'
       )}
     >
-      <Avatar className="shadow-sm">
-        <AvatarImage
-          src={isUser ? user?.photoURL ?? '' : undefined}
-          alt={isUser ? user?.displayName ?? 'User' : 'MindAura'}
-        />
-        <AvatarFallback>
-          {isUser ? (
-            <User className="text-primary" />
-          ) : (
-            <Bot className="text-accent-foreground" />
-          )}
-        </AvatarFallback>
-      </Avatar>
+      {!isUser && (
+        <Avatar className="shadow-sm h-8 w-8">
+          <AvatarFallback>
+            <Bot className="text-accent" />
+          </AvatarFallback>
+        </Avatar>
+      )}
       <div
         className={cn(
           'max-w-md rounded-xl px-4 py-3 shadow-md md:max-w-2xl',
@@ -53,6 +47,17 @@ export default function ChatMessage({ message, user }: ChatMessageProps) {
       >
         {isLoading ? <LoadingIndicator /> : <p className="whitespace-pre-wrap">{message.content}</p>}
       </div>
+       {isUser && (
+        <Avatar className="shadow-sm h-8 w-8">
+            <AvatarImage
+              src={user?.photoURL ?? ''}
+              alt={user?.displayName ?? 'User'}
+            />
+            <AvatarFallback>
+                <User className="text-primary" />
+            </AvatarFallback>
+        </Avatar>
+      )}
     </div>
   );
 }

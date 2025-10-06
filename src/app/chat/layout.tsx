@@ -11,8 +11,9 @@ export default function ChatLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-gradient-to-br from-background via-card to-background">
-      {children}
+    <div className="relative h-screen w-screen overflow-hidden">
+      <div className="pointer-events-none absolute -inset-px z-0 opacity-50 [mask-image:radial-gradient(120%_120%_at_50%_0%,white,transparent)] bg-gradient-to-br from-primary/30 via-transparent to-transparent"></div>
+      <div className="relative h-full w-full">{children}</div>
     </div>
   );
 }

@@ -1,33 +1,25 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { ArrowRight, Bot, MessageCircle, Sparkles, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Footer from '@/components/layout/footer';
 
 const features = [
   {
-    icon: <Bot className="h-8 w-8 text-primary" />,
+    icon: <Bot className="h-8 w-8 text-accent" />,
     title: 'Empathetic Conversations',
     description:
       'Chat with MindAura, your AI companion designed for supportive and mindful dialogue.',
   },
   {
-    icon: <Sparkles className="h-8 w-8 text-primary" />,
+    icon: <Sparkles className="h-8 w-8 text-accent" />,
     title: 'A Space to Reflect',
     description:
       'Gain clarity and perspective by voicing your thoughts and feelings in a private, non-judgmental environment.',
   },
   {
-    icon: <User className="h-8 w-8 text-primary" />,
+    icon: <User className="h-8 w-8 text-accent" />,
     title: 'Always Available',
     description:
       'MindAura is here for you 24/7, whenever you need a moment to pause, reflect, or just talk.',
@@ -61,33 +53,23 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col items-center">
-      <section className="w-full bg-card py-20 md:py-32">
-        <div className="container mx-auto grid grid-cols-1 items-center gap-12 px-4 md:grid-cols-2 md:px-6">
-          <div className="space-y-6">
-            <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+    <div className="flex flex-col items-center bg-background text-foreground">
+      <section className="w-full py-24 md:py-40 bg-grid-small-white/[0.2] relative">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        <div className="container mx-auto text-center px-4 md:px-6">
+          <div className="max-w-3xl mx-auto space-y-6">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-2">
               Your AI-powered mental wellness companion.
             </h1>
-            <p className="max-w-[600px] text-lg text-muted-foreground">
+            <p className="max-w-[600px] mx-auto text-lg text-muted-foreground">
               MindAura provides a safe, simple, and beautiful space to chat with
               an empathetic AI. Reflect, calm down, and feel heard.
             </p>
             <Link href="/chat">
-              <Button size="lg" className="gap-2">
+              <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105">
                 Start Talking <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
-          </div>
-          <div className="relative h-64 w-full md:h-96">
-            {heroImage && (
-              <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                data-ai-hint={heroImage.imageHint}
-                fill
-                className="rounded-xl object-cover shadow-2xl"
-              />
-            )}
           </div>
         </div>
       </section>
@@ -95,19 +77,19 @@ export default function Home() {
       <section id="features" className="w-full py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               A new way to care for your mind
             </h2>
             <p className="mt-4 text-muted-foreground">
-              MindAura is more than just a chatbot. It&apos;s a tool to support your
+              MindAura is more than just a chatbot. It's a tool to support your
               mental wellbeing.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {features.map((feature) => (
-              <Card key={feature.title} className="text-center">
+              <Card key={feature.title} className="text-center bg-card/50 border-border/50 hover:border-accent transition-all duration-300 hover:bg-card">
                 <CardHeader>
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary/50">
                     {feature.icon}
                   </div>
                   <CardTitle>{feature.title}</CardTitle>
@@ -123,48 +105,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="testimonials" className="w-full bg-card py-20 md:py-32">
+       <section id="visual" className="w-full py-20 md:py-32">
+         <div className="container mx-auto text-center">
+             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+               A glimpse into your journey
+             </h2>
+             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+                Our interface is designed to be calming, intuitive, and beautiful.
+             </p>
+             <div className="relative mt-12 h-96 w-full max-w-5xl mx-auto">
+               {heroImage && (
+                 <Image
+                   src={heroImage.imageUrl}
+                   alt={heroImage.description}
+                   data-ai-hint={heroImage.imageHint}
+                   fill
+                   className="rounded-xl object-cover shadow-2xl shadow-primary/10 border border-border/20"
+                 />
+               )}
+            </div>
+         </div>
+       </section>
+
+      <section id="testimonials" className="w-full py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Loved by users worldwide
             </h2>
             <p className="mt-4 text-muted-foreground">
               Hear what people are saying about their experience with MindAura.
             </p>
           </div>
-          <Carousel
-            opts={{
-              align: 'start',
-            }}
-            className="w-full max-w-4xl mx-auto"
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <Card className="flex flex-col justify-between h-full">
-                      <CardContent className="pt-6">
-                        <MessageCircle className="mb-4 h-8 w-8 text-primary" />
-                        <p className="text-muted-foreground">
-                          &quot;{testimonial.quote}&quot;
-                        </p>
-                      </CardContent>
-                      <CardHeader>
-                          <p className="font-semibold">{testimonial.author}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                      </CardHeader>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.author} className="flex flex-col bg-card/50 border-border/50 p-6">
+                 <CardContent className="flex-grow p-0">
+                   <MessageCircle className="mb-4 h-8 w-8 text-accent" />
+                   <p className="text-muted-foreground">
+                     &quot;{testimonial.quote}&quot;
+                   </p>
+                 </CardContent>
+                 <CardHeader className="p-0 pt-6">
+                   <p className="font-semibold">{testimonial.author}</p>
+                   <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                 </CardHeader>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 }

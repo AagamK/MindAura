@@ -118,9 +118,9 @@ export default function ChatPanel() {
   return (
     <>
       <div className="flex h-screen flex-col">
-        <div className="border-b bg-card/80 backdrop-blur-sm">
+        <div className="border-b border-border/50 bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto flex max-w-3xl items-center justify-between p-4">
-            <h2 className="text-lg font-semibold text-card-foreground">
+            <h2 className="text-lg font-semibold text-foreground">
               Your Conversation
             </h2>
             <Button
@@ -144,7 +144,7 @@ export default function ChatPanel() {
             ))}
           </div>
         </div>
-        <div className="border-t bg-card/80 p-4 backdrop-blur-sm md:p-6">
+        <div className="border-t border-border/50 bg-background/80 p-4 backdrop-blur-sm md:p-6">
           <div className="container mx-auto max-w-3xl">
             <Form {...form}>
               <form
@@ -172,7 +172,7 @@ export default function ChatPanel() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="icon" disabled={isPending} className="rounded-full h-10 w-10">
+                <Button type="submit" size="icon" disabled={isPending} className="rounded-full h-10 w-10 bg-primary hover:bg-primary/90">
                   <Send className="h-5 w-5" />
                   <span className="sr-only">Send</span>
                 </Button>

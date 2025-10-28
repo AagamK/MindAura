@@ -1,5 +1,3 @@
-import Header from '@/components/layout/header';
-
 export default function DashboardLayout({
   children,
 }: {
@@ -7,7 +5,6 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <Header />
       <main className="p-4 sm:p-6 lg:p-8">{children}</main>
     </>
   );

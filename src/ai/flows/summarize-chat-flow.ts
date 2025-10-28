@@ -36,22 +36,11 @@ export async function summarizeChat(
   return summarizeChatFlow(input);
 }
 
-const formatHistory = (history: z.infer<typeof ChatMessageSchema>[]) => {
-  return history
-    .map((msg) => `${msg.role === 'user' ? 'User' : 'AI'}: ${msg.content}`)
-    .join('\n');
-};
-
 const prompt = ai.definePrompt({
   name: 'summarizeChatPrompt',
-  input: { schema: SummarizeChatInputSchema },
+  input: { schema: z.object({ formattedHistory: z.string() }) },
   output: { schema: SummarizeChatOutputSchema },
-  prompt: `Please provide a brief, neutral summary of the following chat conversation. Focus on the main topics discussed without adding any interpretation or opinion.\n\nConversation History:\n{{{formatHistory chatHistory}}}`,
-  template: {
-    helpers: {
-      formatHistory,
-    },
-  },
+  prompt: `Please provide a brief, neutral summary of the following chat conversation. Focus on the main topics discussed without adding any interpretation or opinion.\n\nConversation History:\n{{{formattedHistory}}}`,
 });
 
 const summarizeChatFlow = ai.defineFlow(
@@ -61,7 +50,15 @@ const summarizeChatFlow = ai.defineFlow(
     outputSchema: SummarizeChatOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
+    const formatHistory = (history: z.infer<typeof ChatMessageSchema>[]) => {
+      return history
+        .map((msg) => `${msg.role === 'user' ? 'User' : 'AI'}: ${msg.content}`)
+        .join('\n');
+    };
+
+    const formattedHistory = formatHistory(input.chatHistory);
+
+    const { output } = await prompt({ formattedHistory });
     return output!;
   }
 );

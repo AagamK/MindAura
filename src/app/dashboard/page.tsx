@@ -1,17 +1,9 @@
 'use client';
 
 import {
-  Activity,
-  ArrowUpRight,
-  Clock,
-  Smile,
-  Users,
-} from 'lucide-react';
-import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -23,15 +15,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart';
-import { Pie, PieChart, Cell, ResponsiveContainer } from 'recharts';
+import { Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { Badge } from '@/components/ui/badge';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import {
   LineChart,
   Line,
@@ -41,29 +26,9 @@ import {
   Tooltip,
 } from 'recharts';
 
-const moodData = [
-  { name: 'Happy', value: 400, fill: 'hsl(var(--chart-1))' },
-  { name: 'Calm', value: 300, fill: 'hsl(var(--chart-2))' },
-  { name: 'Sad', value: 200, fill: 'hsl(var(--chart-3))' },
-  { name: 'Stressed', value: 100, fill: 'hsl(var(--chart-4))' },
-];
-
-const userGrowthData = [
-  { date: '2023-05-01', users: 23 },
-  { date: '2023-05-02', users: 31 },
-  { date: '2023-05-03', users: 45 },
-  { date: '2023-05-04', users: 52 },
-  { date: '2023-05-05', users: 68 },
-  { date: '2023-05-06', users: 73 },
-  { date: '2023-05-07', users: 81 },
-];
-
-const recentActivity = [
-    { username: 'Alex R.', mood: 'Calm', messages: 12, lastActive: '5m ago' },
-    { username: 'Jessica M.', mood: 'Stressed', messages: 28, lastActive: '1h ago' },
-    { username: 'David L.', mood: 'Happy', messages: 5, lastActive: '3h ago' },
-    { username: 'Sarah B.', mood: 'Sad', messages: 15, lastActive: '1d ago' },
-]
+const moodData: any[] = [];
+const userGrowthData: any[] = [];
+const recentActivity: any[] = [];
 
 export default function Dashboard() {
   return (
@@ -75,29 +40,29 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardDescription>Active Users Today</CardDescription>
-                  <CardTitle className="text-4xl">1,257</CardTitle>
+                  <CardTitle className="text-4xl">--</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
-                    +25% from last day
+                    --% from last day
                   </div>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
                   <CardDescription>Total Chat Sessions</CardDescription>
-                  <CardTitle className="text-4xl">10,352</CardTitle>
+                  <CardTitle className="text-4xl">--</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
-                    +10% from last month
+                    --% from last month
                   </div>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
                   <CardDescription>Most Common Mood</CardDescription>
-                  <CardTitle className="text-4xl">Calm</CardTitle>
+                  <CardTitle className="text-4xl">---</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
@@ -108,11 +73,11 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className="pb-2">
                   <CardDescription>Avg. Session Duration</CardDescription>
-                  <CardTitle className="text-4xl">8m 42s</CardTitle>
+                  <CardTitle className="text-4xl">--m --s</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-xs text-muted-foreground">
-                    +5% from last week
+                    --% from last week
                   </div>
                 </CardContent>
               </Card>
@@ -127,40 +92,66 @@ export default function Dashboard() {
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={250}>
-                    <PieChart>
-                      <Pie
-                        data={moodData}
-                        dataKey="value"
-                        nameKey="name"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={80}
-                        label
-                      >
-                        {moodData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.fill} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
+                    {moodData.length > 0 ? (
+                      <PieChart>
+                        <Pie
+                          data={moodData}
+                          dataKey="value"
+                          nameKey="name"
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={80}
+                          label
+                        />
+                        <Tooltip />
+                      </PieChart>
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-muted-foreground">
+                        No mood data available.
+                      </div>
+                    )}
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
-               <Card>
+              <Card>
                 <CardHeader>
                   <CardTitle>User Growth</CardTitle>
-                  <CardDescription>New users over the last 7 days.</CardDescription>
+                  <CardDescription>
+                    New users over the last 7 days.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                   <ResponsiveContainer width="100%" height={250}>
+                  <ResponsiveContainer width="100%" height={250}>
+                    {userGrowthData.length > 0 ? (
                       <LineChart data={userGrowthData}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                        <XAxis dataKey="date" tickFormatter={(val) => new Date(val).toLocaleDateString('en-US', { month: 'short', day: 'numeric'})} />
+                        <CartesianGrid
+                          strokeDasharray="3 3"
+                          vertical={false}
+                        />
+                        <XAxis
+                          dataKey="date"
+                          tickFormatter={(val) =>
+                            new Date(val).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                            })
+                          }
+                        />
                         <YAxis />
                         <Tooltip />
-                        <Line type="monotone" dataKey="users" stroke="hsl(var(--primary))" strokeWidth={2} />
+                        <Line
+                          type="monotone"
+                          dataKey="users"
+                          stroke="hsl(var(--primary))"
+                          strokeWidth={2}
+                        />
                       </LineChart>
-                   </ResponsiveContainer>
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-muted-foreground">
+                        No user growth data available.
+                      </div>
+                    )}
+                  </ResponsiveContainer>
                 </CardContent>
               </Card>
             </div>
@@ -186,18 +177,35 @@ export default function Dashboard() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {recentActivity.map(activity => (
-                    <TableRow key={activity.username}>
-                      <TableCell>
-                        <div className="font-medium">{activity.username}</div>
-                      </TableCell>
-                      <TableCell className="hidden sm:table-cell">
-                        <Badge variant="outline">{activity.mood}</Badge>
-                      </TableCell>
-                      <TableCell className="hidden sm:table-cell">{activity.messages}</TableCell>
-                      <TableCell className="text-right">{activity.lastActive}</TableCell>
-                    </TableRow>
-                    ))}
+                    {recentActivity.length > 0 ? (
+                      recentActivity.map((activity) => (
+                        <TableRow key={activity.username}>
+                          <TableCell>
+                            <div className="font-medium">
+                              {activity.username}
+                            </div>
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            <Badge variant="outline">{activity.mood}</Badge>
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            {activity.messages}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            {activity.lastActive}
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell
+                          colSpan={4}
+                          className="py-10 text-center text-muted-foreground"
+                        >
+                          No recent activity.
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableBody>
                 </Table>
               </CardContent>

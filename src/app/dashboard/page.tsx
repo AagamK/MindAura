@@ -25,9 +25,13 @@ export default function Dashboard() {
     try {
       const storedMessages = localStorage.getItem(CHAT_HISTORY_KEY);
       if (storedMessages) {
-        const parsed = JSON.parse(storedMessages) as ChatMessage[];
-        // Filter out the initial welcome message
-        if (parsed.length > 1) {
+        let parsed = JSON.parse(storedMessages) as ChatMessage[];
+        // Filter out the initial welcome message from the AI
+        if (parsed.length > 1 && parsed[0].role === 'model') {
+            parsed = parsed.slice(1);
+        }
+        
+        if (parsed.length > 0) {
           setChatHistory(parsed);
         }
       }

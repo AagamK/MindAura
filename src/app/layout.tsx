@@ -28,11 +28,7 @@ export default function RootLayout({
       <body className={cn('font-body antialiased', inter.variable)}>
         <ThemeProvider defaultTheme='dark'>
           <AuthProvider>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <main className="flex-grow">{children}</main>
-            </div>
-            <Footer />
+                {children}
             <Toaster />
           </AuthProvider>
         </ThemeProvider>

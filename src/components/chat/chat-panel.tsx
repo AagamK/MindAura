@@ -40,6 +40,8 @@ const getInitialMessage = (): Message => {
   return { id: 'init', role: 'model', content };
 };
 
+const CHAT_HISTORY_KEY = 'mindaura_chat_history';
+
 export default function ChatPanel() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -56,17 +58,39 @@ export default function ChatPanel() {
   });
 
   useEffect(() => {
-    setMessages([getInitialMessage()]);
+    // Load messages from local storage on initial render
+    try {
+      const storedMessages = localStorage.getItem(CHAT_HISTORY_KEY);
+      if (storedMessages) {
+        setMessages(JSON.parse(storedMessages));
+      } else {
+        setMessages([getInitialMessage()]);
+      }
+    } catch (error) {
+      console.error('Failed to load messages from local storage', error);
+      setMessages([getInitialMessage()]);
+    }
   }, []);
 
   useEffect(() => {
+    // Save messages to local storage whenever they change
+    try {
+      if (messages.length > 1 || (messages.length === 1 && messages[0].id !== 'init')) {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
+      }
+    } catch (error) {
+      console.error('Failed to save messages to local storage', error);
+    }
+    
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
 
   const handleClearChat = () => {
-    setMessages([getInitialMessage()]);
+    const initialMessage = getInitialMessage();
+    setMessages([initialMessage]);
+    localStorage.removeItem(CHAT_HISTORY_KEY);
     setShowClearConfirm(false);
     toast({
       title: 'Conversation Cleared',

@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import {
+  LayoutDashboard,
   LogIn,
   LogOut,
   MessageCircle,
@@ -42,6 +43,11 @@ export default function Header() {
                   <span className="text-sm text-muted-foreground hidden sm:inline-block">
                     Welcome, {user.displayName || user.email}
                   </span>
+                   <Link href="/dashboard">
+                    <Button variant="ghost" className="gap-2">
+                      <LayoutDashboard className="h-5 w-5" /> Dashboard
+                    </Button>
+                  </Link>
                   <Button variant="ghost" size="icon" onClick={handleLogout}>
                     <LogOut className="h-5 w-5" />
                     <span className="sr-only">Log out</span>
